@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Me via PayPal</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .video-background {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            display: block;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: block;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .paypal-button {
+            margin-top: 20px;
+        }
+        .toggle-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function toggleElements() {
+            var container = document.querySelector('.container');
+            var toggleButton = document.querySelector('.toggle-button');
+            
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                toggleButton.textContent = 'Hide Other Content';
+            } else {
+                container.style.display = 'none';
+                toggleButton.textContent = 'Show Other Content';
+            }
+        }
+    </script>
+</head>
+<body>
+    <video autoplay muted loop class="video-background">
+        <source src="https://steamusercontent-a.akamaihd.net/ugc/2539548940634341099/9F00B79576C8ED3369C286E5760D20574DD1B38E/" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <h1>Support Me</h1>
+        <p>If you enjoy my gaming adventures and want to support my journey, your contribution keeps the games going strong!</p>
+        <div class="paypal-button">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_donations">
+                <!-- Replace with your actual PayPal email address -->
+                <input type="hidden" name="business" value="your-paypal-email@example.com">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+        <p><a href="https://about.me/kobus" target="_blank">Visit my About.me profile</a></p>
+    </div>
+    <div class="toggle-button" onclick="toggleElements()">Hide Other Content</div>
+</body>
+</html>
