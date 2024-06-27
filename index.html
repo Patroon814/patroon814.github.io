@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Cool Video Snippets</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .content {
+            text-align: center;
+            color: #fff;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 20px;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            width: 200px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .exit-fullscreen-button {
+            position: fixed;
+            display: none;
+            width: 200px;
+            top: 10px;
+            right: 10px;
+        }
+        .link {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 10px;
+            display: block;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        #about-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay loop muted class="video-background" id="background-video">
+        <source src="https://steamusercontent-a.akamaihd.net/ugc/2539548940634728227/AC268F8C233C1C30C8E122A88D3D32D82624AB55/" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Main Content -->
+    <div class="content" id="content">
+        <h1>Support Cool Video Snippets</h1>
+        <p>Enjoy this cool and interesting video snippet!</p>
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=kobus.email@gmail.com&item_name=Support%20Cool%20Video%20Snippets&currency_code=USD" class="button">Donate Now</a>
+        <a href="#" id="fullscreen-toggle" class="button">Fullscreen</a>
+        <a href="about-kobus.html" class="link" id="about-link">Learn more about this project</a>
+        <a href="https://about.me/kobus" class="link">About Kobus</a>
+    </div>
+
+    <!-- About Content -->
+    <div class="content" id="about-content">
+        <p>Greetings, I am Kobus, also known as Prima, Founder and Director of Patroon. My focus lies in gaming—a term often negatively associated with idleness and dependence. I have embraced this pursuit with a profound sense of purpose, despite enduring misconceptions and unfair judgments. For me, gaming transcends mere entertainment; it is akin to scouting for moments of pure joy and exquisite beauty, capturing them like treasured photographs in the vast universe of virtual worlds. These experiences, shared among friends, enrich our lives and provide moments to savor in the comfort of our homes.</p>
+        <button id="home-button" class="button">Home</button>
+    </div>
+
+    <!-- Exit Fullscreen Button -->
+    <a href="#" id="exit-fullscreen" class="exit-fullscreen-button button">Exit Fullscreen</a>
+
+    <script>
+        document.getElementById('fullscreen-toggle').addEventListener('click', function() {
+            toggleFullscreen();
+        });
+
+        document.getElementById('exit-fullscreen').addEventListener('click', function() {
+            exitFullscreen();
+        });
+
+        // Toggle fullscreen mode
+        function toggleFullscreen() {
+            const doc = window.document;
+            const docEl = doc.documentElement;
+            const content = document.getElementById('content');
+            const exitButton = document.getElementById('exit-fullscreen');
+
+            const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+
+            if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullScreen.call(docEl);
+                content.style.display = 'none';
+                exitButton.style.display = 'block';
+            }
+        }
+
+        // Exit fullscreen mode
+        function exitFullscreen() {
+            const doc = window.document;
+            const content = document.getElementById('content');
+            const exitButton = document.getElementById('exit-fullscreen');
+
+            const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+            if (doc.fullscreenElement || doc.mozFullScreenElement || doc.webkitFullscreenElement || doc.msFullscreenElement) {
+                cancelFullScreen.call(doc);
+                content.style.display = 'block';
+                exitButton.style.display = 'none';
+            }
+        }
+
+        // Show about content and toggle button
+        document.getElementById('about-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('about-content').style.display = 'block';
+        });
+
+        // Show main content when home button is clicked
+        document.getElementById('home-button').addEventListener('click', function() {
+            document.getElementById('about-content').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
